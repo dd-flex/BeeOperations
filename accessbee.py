@@ -1,21 +1,3 @@
-<<<<<<< Updated upstream
-from http.client import HTTPSConnection
-from base64 import b64encode
-#This sets up the https connection
-c = HTTPSConnection("app.beeoffice.com")
-#we need to base 64 encode it 
-#and then decode it to acsii as python 3 stores it as a byte string
-userAndPass = b64encode(b"automat1:Haslo123").decode("ascii")
-headers = { 'Authorization' : 'Basic %s' %  userAndPass,}
-#then connect
-c.request('GET', '/api/utils/whoiam?org=flexfilm.demo', headers=headers)
-#get the response back
-res = c.getresponse()
-# at this point you could check the status etc
-# this gets the page text
-data = res.read()
-print(data)  
-=======
 # import requests module
 import requests
 import io
@@ -30,14 +12,17 @@ payload = {
     #'loginData':'userName=automat1&system=flexfilm.demo&language=pl',
     #'Authorization':'YXV0b21hdDE6SGFzbG8xMjM=',
     #'ibm-mq-rest-csrf-token':'',
-    'ASP.NET_SessionId': 'srtagc0iza5wniaarnzgfv5b',
-    '__RequestVerificationToken': 'gcVRUFwlOIOdEOQoHRThdP-skGsu6aH4YyN0UC4hmPV7s3BHpwLl_Be3GcPdxmMIvMGJ3EB1viQN3fzuXQ7DyI7EGy01',
-    '.ASPXAUTHBEE': '79A837C0CACB9FE688746490EB8E01079B1255AAC754E47DB06CAE83FA4CDBBE217E6CC9ACF77EC40764B8F0F06E5CF16ABC80C737735FAA21C765E072BEE8C28830258055481AB0C8D32524B7C5D9FCACF2892E1A497BECF2E2CC9317135E0F0679694330629BF790AC8A9D5E1B7091565751AA365D1A7570E4E348D973A7E3A1FDFB24D5322F2D18F98536ACEECFE69DCC0AD71A4FC89083FAE588380C10735EACC31FB4A7B67B211288E28772F191AB6A430A7978E5D775D3C35AD3C6ABD6458203CEABA97E802E220300F4736F3DF73423080AFCFF70CC3C6ADCD2C105E4AB0C410E',
-    'Accept':'text/json'
+    #'ASP.NET_SessionId': 'srtagc0iza5wniaarnzgfv5b',
+    #'__RequestVerificationToken': 'gcVRUFwlOIOdEOQoHRThdP-skGsu6aH4YyN0UC4hmPV7s3BHpwLl_Be3GcPdxmMIvMGJ3EB1viQN3fzuXQ7DyI7EGy01',
+    '.ASPXAUTHBEE': '307E4230145B3703E81D43CACF1BEDD3FE2960D0D9F78F56B6761DF48812C79C651E076DB3B0215C70E6C133EE250B14A4A42C9CFF0E72783096A9E9E58EE0B49C0C22528095D6DD885D5C67BF03E5B00F32124419BCDC90770BB3E553697199413ABEB1110AA6997BFFFBD46B225110BE6A2C734789686FF28C335B25DA408FBB95C98AAB91A5B8801BAB31DAC0C30A769F63AEC17945A0E4E2772EE22958F2BBC27E70A59C38E7604874D3265240300D342A02F76CCEF3E5F278A3BD9022EF0A2430C037EB48377A0784D01FF112CEED8D8D40F1F2A79CFD9C07306B92BF81CC21BF98',
+    'Accept':'text/json',
+    'Referer': "https://app.beeoffice.com/swagger/ui/index"
     }
-r = s.get('https://app.beeoffice.com/api/utils/whoiam', data=payload)#, auth = ('automat1', 'Haslo123') )
+r = requests.get('https://app.beeoffice.com/api/utils/whoiam', data=payload, headers={'.ASPXAUTHBEE': '307E4230145B3703E81D43CACF1BEDD3FE2960D0D9F78F56B6761DF48812C79C651E076DB3B0215C70E6C133EE250B14A4A42C9CFF0E72783096A9E9E58EE0B49C0C22528095D6DD885D5C67BF03E5B00F32124419BCDC90770BB3E553697199413ABEB1110AA6997BFFFBD46B225110BE6A2C734789686FF28C335B25DA408FBB95C98AAB91A5B8801BAB31DAC0C30A769F63AEC17945A0E4E2772EE22958F2BBC27E70A59C38E7604874D3265240300D342A02F76CCEF3E5F278A3BD9022EF0A2430C037EB48377A0784D01FF112CEED8D8D40F1F2A79CFD9C07306B92BF81CC21BF98',
+    'Accept':'text/json',
+    'Referer': "https://app.beeoffice.com/swagger/ui/index"})#, auth = ('automat1', 'Haslo123') )
 respfile = io.open("index.html", "w", encoding="utf-8")
 respfile.write(r.text)
 respfile.close
 print(r.text)
->>>>>>> Stashed changes
+print(r)
